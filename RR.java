@@ -58,27 +58,19 @@ class RR {
                         curProcess.first = false;
                     }
                     if(curProcess.remainingTime >= timeQuantum) {
-                        // for(Process process : processes)                    
-                        //     process.waitingTime += timeQuantum;
-                        // curProcess.waitingTime -= timeQuantum;
                         curProcess.setRemainingTime(curProcess.remainingTime-timeQuantum);
                         currentTime += timeQuantum;
                     }
                     else {
-                        // for(Process process : processes)                    
-                        //     process.waitingTime += curProcess.burstTime;
-                        // curProcess.waitingTime -= curProcess.burstTime;
                         currentTime += curProcess.remainingTime;
                         curProcess.setRemainingTime(0);
                         totalRemainingTime -= curProcess.burstTime;
-                        //System.out.println("totalRemainingTime : " + totalRemainingTime);
                         curProcess.completionTime = currentTime;
                         int waitingTime = currentTime - curProcess.burstTime;
                         totalWaitingTime += waitingTime;
 
                         int turnaroundTime = curProcess.completionTime - curProcess.startTime;
                         System.out.println("\nProcess " + curProcess.processId + 
-                                //"\nstart Time : " + curProcess.startTime+
                                 "\nTurnaround Time : " + turnaroundTime +
                                 "  Waiting Time : " + waitingTime);
                     }
